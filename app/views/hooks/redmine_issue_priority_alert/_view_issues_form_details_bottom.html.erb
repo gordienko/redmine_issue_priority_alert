@@ -1,0 +1,13 @@
+<%= javascript_tag do %>
+  $("#issue_priority_id").change(function(){
+    var newVal = $(this).val();
+    var issue_text = this.options[this.selectedIndex].innerHTML;
+    if (issue_text == 'Авария' || issue_text == 'Авария!') {
+      if (!confirm("Пожалуйста, убедитесь, что задача действительно является аварийной! \n\nПри необоснованном выборе максимальных приоритетов Ваш аккаунт будет заблокирован!")) {
+        $(this).val($.data(this, 'val'));
+        return;
+      }
+      $.data(this, 'val', newVal);
+    }
+  });
+<% end %>
